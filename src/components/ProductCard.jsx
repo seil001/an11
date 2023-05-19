@@ -27,9 +27,9 @@ const ProductCard = () => {
     >
       <h1 style={{ margin: "30px 0" }}>product card</h1>
       {products.map((item, index) => (
-        <Card sx={{ maxWidth: 345, marginBottom: "20px" }} key={index}>
+        <Card sx={{ maxWidth: 350, marginBottom: "20px" }} key={index}>
           <CardMedia
-            sx={{ height: 400 }}
+            sx={{ height: 500 }}
             image={item.image}
             title="green iguana"
           />
@@ -37,27 +37,16 @@ const ProductCard = () => {
             <Typography gutterBottom variant="h5" component="div">
               {item.name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {item.price}
-            </Typography>
+            <Typography variant="body2">{item.price}</Typography>
           </CardContent>
           <CardActions>
             <Link to={`detail/${item.id}`}>
-              <Button
-                style={{ margin: "5px" }}
-                size="small"
-                variant="contained"
-                color="secondary"
-              >
+              <Button style={{ margin: "5px" }} size="small">
                 Details
               </Button>
             </Link>
-            <Button size="small" variant="contained">
-              Edit
-            </Button>
-            <Button size="small" variant="contained" color="error">
-              Delete
-            </Button>
+            <Button size="small">Edit</Button>
+            <Button size="small">Delete</Button>
           </CardActions>
         </Card>
       ))}
