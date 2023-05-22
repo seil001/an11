@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 
 const ProductCard = () => {
-  const { products, getProducts } = useContext(productContext);
+  const { products, getProducts, deleteProduct } = useContext(productContext);
   // console.log(products, "product");
   useEffect(() => {
     getProducts();
@@ -23,9 +23,9 @@ const ProductCard = () => {
         display: "flex",
         justifyContent: "space-around",
         flexWrap: "wrap",
+        marginTop: "20px",
       }}
     >
-      <h1 style={{ margin: "30px 0" }}>product card</h1>
       {products.map((item, index) => (
         <Card sx={{ maxWidth: 350, marginBottom: "20px" }} key={index}>
           <CardMedia
@@ -45,8 +45,12 @@ const ProductCard = () => {
                 Details
               </Button>
             </Link>
-            <Button size="small">Edit</Button>
-            <Button size="small">Delete</Button>
+            <Link to={`edit/${item.id}`}>
+              <Button size="small">Edit</Button>
+            </Link>
+            <Button size="small" onClick={() => deleteProduct(item.id)}>
+              Delete
+            </Button>
           </CardActions>
         </Card>
       ))}

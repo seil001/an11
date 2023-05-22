@@ -45,10 +45,22 @@ const ProductContextProvider = ({ children }) => {
     dispatch(action);
   };
 
+  const deleteProduct = async (id) => {
+    await axios.delete(`${API}/${id}`);
+    getProducts();
+  };
+
+  const saveEditProduct = async (newProduct) => {
+    await axios.patch(`${API}/${newProduct.id}`, newProduct); //не сразу показывает newProduct
+    getProducts(); //чтобы сразу показать newProduct
+  };
+
   const values = {
     addProduct,
     getProducts,
     getOneProduct,
+    deleteProduct,
+    saveEditProduct,
     products: state.products,
     oneProduct: state.oneProduct,
   };
