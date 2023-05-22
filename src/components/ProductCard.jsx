@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { productContext } from "../context/ProductContextProvider";
 import {
   Button,
@@ -12,11 +12,6 @@ import { Link } from "react-router-dom";
 
 const ProductCard = () => {
   const { products, getProducts } = useContext(productContext);
-  // console.log(products, "product");
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   return (
     <div
       style={{
@@ -25,9 +20,11 @@ const ProductCard = () => {
         flexWrap: "wrap",
       }}
     >
-      <h1 style={{ margin: "30px 0" }}>product card</h1>
       {products.map((item, index) => (
-        <Card sx={{ maxWidth: 345, marginBottom: "20px" }} key={index}>
+        <Card
+          sx={{ maxWidth: 345, marginTop: "80px", marginBottom: "20px" }}
+          key={index}
+        >
           <CardMedia
             sx={{ height: 400 }}
             image={item.image}

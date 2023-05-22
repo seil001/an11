@@ -26,7 +26,7 @@ const ProductDetails = () => {
     getOneProduct(id);
   }, []); // оно должно применяться единожды поэтому пустой массив
 
-  console.log(oneProduct, "oneProduct"); //выходить ошибка в консоли
+  console.log(oneProduct, "oneProduct"); //выходит ошибка в консоли
   //чтобы не выходило ошибка мы создаем useParams вверху
   return (
     <div>

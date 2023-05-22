@@ -1,9 +1,10 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { API } from "../helpers/const";
 import axios from "axios";
 export const productContext = createContext();
 
 const INIT_STATE = { products: [], oneProduct: null };
+export const useProduct = () => useContext(productContext);
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -25,7 +26,7 @@ const ProductContextProvider = ({ children }) => {
   };
 
   const getProducts = async () => {
-    let { data } = await axios(API);
+    let { data } = await axios(`${API}/${window.location.search}`);
     let action = {
       type: "GET_PRODUCTS",
       payload: data,
