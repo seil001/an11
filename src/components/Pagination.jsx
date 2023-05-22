@@ -13,7 +13,7 @@ export default function MyPagination() {
           display: "flex",
           justifyContent: "center",
         }}
-        count={2}
+        count={1}
         page={page}
         variant="outlined"
         color="primary"
