@@ -12,6 +12,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { TextField } from "@mui/material";
+import { useState } from "react";
+import Search from "./Search";
 
 const pages = ["Супы", "Салаты", "Десерты", "Напитки", "Мясо"];
 
@@ -36,7 +40,7 @@ function Navbar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ color: "error" }}>
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
@@ -123,6 +127,7 @@ function Navbar() {
               </Button>
             ))}
           </Box>
+          <Search />
         </Toolbar>
       </Container>
     </AppBar>
