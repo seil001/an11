@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { productContext } from "../context/ProductContextProvider";
 
 const Search = () => {
-  const { products, getProducts } = useContext(productContext);
+  const { getProducts } = useContext(productContext);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("q") || "");

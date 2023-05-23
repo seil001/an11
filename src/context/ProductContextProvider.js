@@ -1,10 +1,16 @@
-import { createContext, useContext, useReducer } from "react";
-import { API } from "../helpers/const";
+import { createContext, useContext, useReducer, useState } from "react";
+import { ACTIONS, API, LIMIT } from "../helpers/const";
 import axios from "axios";
-export const productContext = createContext();
 
-const INIT_STATE = { products: [], oneProduct: null };
+const productContext = createContext();
+
 export const useProduct = () => useContext(productContext);
+
+const INIT_STATE = {
+  products: [],
+  oneProduct: null,
+  pageTotalCount: 1,
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,12 +52,35 @@ const ProductContextProvider = ({ children }) => {
     dispatch(action);
   };
 
+  async function getPagination() {
+    const { search } = useState;
+    try {
+      const res = await axios(
+        `${API}${window.location || search`?_limit=${LIMIT}`}`
+      );
+      const totalPages = Math.ceil(res.headers["x-total-count"] / LIMIT);
+      let action = {
+        type: ACTIONS.products,
+        payload: res.data,
+      };
+      dispatch(action);
+
+      dispatch({
+        type: ACTIONS.pageTotalCount,
+        payload: totalPages,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const values = {
     addProduct,
     getProducts,
     getOneProduct,
     products: state.products,
     oneProduct: state.oneProduct,
+    getPagination,
   };
 
   return (
