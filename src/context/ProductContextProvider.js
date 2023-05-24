@@ -95,6 +95,7 @@ const ProductContextProvider = ({ children }) => {
     getPagination,
     products: state.products,
     oneProduct: state.oneProduct,
+    getPagination,
     pageTotalCount: state.pageTotalCount,
   };
 

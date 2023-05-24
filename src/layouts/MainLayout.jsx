@@ -8,7 +8,7 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar />
-      <CartPage />
+
       <Container maxWidth="lg" sx={{ marginTop: "50px" }}>
         <Outlet />
       </Container>

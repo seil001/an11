@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { productContext } from "../context/ProductContextProvider";
+import { productContext, useProduct } from "../context/ProductContextProvider";
 import {
   Box,
   Button,

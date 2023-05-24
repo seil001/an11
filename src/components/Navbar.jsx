@@ -7,9 +7,13 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
+
 import AdbIcon from "@mui/icons-material/Adb";
-import { Badge } from "@mui/material";
+
 import Search from "./Search";
+
+import { Badge } from "@mui/material";
+
 import { useCart } from "../context/CartContextProvider";
 import { Link } from "react-router-dom";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";

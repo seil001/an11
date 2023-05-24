@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { productContext } from "../context/ProductContextProvider";
+import { productContext, useProduct } from "../context/ProductContextProvider";
 import {
   Button,
   Container,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 const AddProduct = () => {
-  const { addProduct } = useContext(productContext);
+  const { addProduct } = useProduct();
   //   console.log(addProduct);
 
   const initProduct = {
@@ -19,7 +19,7 @@ const AddProduct = () => {
     description: "",
     price: "",
     image: "",
-    type: "",
+    category: "",
   };
 
   const [product, setProduct] = useState(initProduct);
@@ -40,7 +40,7 @@ const AddProduct = () => {
       description: "",
       price: "",
       image: "",
-      type: "",
+      category: "",
     });
   }
 
@@ -61,7 +61,7 @@ const AddProduct = () => {
           name="name"
           value={product.name}
           onChange={handleAddProduct}
-          placeholder="name"
+          placeholder="Name"
         />
         <TextField
           style={{ margin: "10px 0" }}
@@ -69,7 +69,7 @@ const AddProduct = () => {
           name="description"
           value={product.description}
           onChange={handleAddProduct}
-          placeholder="descr"
+          placeholder="Description"
         />
         <TextField
           style={{ margin: "10px 0" }}
@@ -77,7 +77,7 @@ const AddProduct = () => {
           name="price"
           value={product.price}
           onChange={handleAddProduct}
-          placeholder="price"
+          placeholder="Price"
         />
         <TextField
           style={{ margin: "10px 0" }}
@@ -85,9 +85,8 @@ const AddProduct = () => {
           name="image"
           value={product.image}
           onChange={handleAddProduct}
-          placeholder="img"
+          placeholder="Image"
         />
-
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
@@ -99,8 +98,8 @@ const AddProduct = () => {
             onChange={(e) => handleAddProduct(e)}
           >
             <MenuItem value={"Супы"}>Первое блюдо</MenuItem>
-            <MenuItem value={"Десерты"}>Десерты</MenuItem>
             <MenuItem value={"Салаты"}>Салаты</MenuItem>
+            <MenuItem value={"Десерты"}>Десерты</MenuItem>
             <MenuItem value={"Напитки"}>Напитки</MenuItem>
           </Select>
         </FormControl>
