@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { productContext } from "../context/ProductContextProvider";
+import { productContext, useProduct } from "../context/ProductContextProvider";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 const ProductDetails = () => {
-  const { getOneProduct, oneProduct } = useContext(productContext);
+  const { getOneProduct, oneProduct } = useProduct();
   //получили из функции getOneProduct в ProductContextProvider а.
   // и здесь будем заходить в эти функции
 

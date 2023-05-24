@@ -12,6 +12,7 @@ const MyRoutes = () => {
     <div>
       <ProductContextProvider>
         <Navbar />
+
         <Routes>
           <Route path="/" element={<ProductPage />} />
           <Route path="/add" element={<AddProductPage />} />

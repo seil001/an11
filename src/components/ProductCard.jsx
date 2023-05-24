@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { productContext } from "../context/ProductContextProvider";
+import { productContext, useProduct } from "../context/ProductContextProvider";
 import {
   Button,
   Card,
@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 
 const ProductCard = () => {
-  const { products, getProducts } = useContext(productContext);
+  const { products, getProducts } = useProduct();
   return (
     <div
       style={{
