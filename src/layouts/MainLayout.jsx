@@ -2,11 +2,13 @@ import React from "react";
 import { Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CartPage from "../pages/CartPage";
 
 const MainLayout = () => {
   return (
     <div>
       <Navbar />
+      <CartPage />
       <Container maxWidth="lg" sx={{ marginTop: "50px" }}>
         <Outlet />
       </Container>

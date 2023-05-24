@@ -7,7 +7,7 @@ import { productContext } from "../context/ProductContextProvider";
 import { useContext } from "react";
 
 function ProductList() {
-  const { products, pageTotalCount } = productContext();
+  const { products, getProducts, pageTotalCount } = productContext();
   const [page, setPage] = useState(1);
 
   useEffect(() => {

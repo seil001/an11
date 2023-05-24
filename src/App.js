@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <MyRoutes />
-        <ProductList />
+        {/* <ProductList /> */}
       </BrowserRouter>
     </div>
   );
