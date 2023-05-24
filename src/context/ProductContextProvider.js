@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useState } from "react";
 import { ACTIONS, API, LIMIT } from "../helpers/const";
 import axios from "axios";
 
-const productContext = createContext();
+export const productContext = createContext();
 
 export const useProduct = () => useContext(productContext);
 
@@ -18,7 +18,8 @@ const reducer = (state, action) => {
       return { ...state, products: action.payload };
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
-
+    case ACTIONS.pageTotalCount:
+      return { ...state, pageTotalCount: action.payload };
     default:
       return state;
   }
@@ -38,10 +39,22 @@ const ProductContextProvider = ({ children }) => {
       payload: data,
     };
     dispatch(action);
-  }; // функция для стягивание продуктов / получить продукт
+    // функция для стягивание продуктов / получить продукт
 
-  //а это функция для одного продукта details создаем
-  //в INIT State oneProduct пустой обьект
+    //а это функция для одного продукта details создаем
+    //   //в INIT State oneProduct пустой обьект
+  };
+
+  const deleteProduct = async (id) => {
+    await axios.delete(`${API}/${id}`);
+    getProducts();
+  };
+
+  const saveEditProduct = async (newProduct) => {
+    await axios.patch(`${API}/${newProduct.id}`, newProduct); //не сразу показывает newProduct
+    getProducts(); //чтобы сразу показать newProduct
+  };
+
   const getOneProduct = async (id) => {
     let { data } = await axios(`${API}/${id}`);
 
@@ -51,9 +64,8 @@ const ProductContextProvider = ({ children }) => {
     };
     dispatch(action);
   };
-
+  const { search } = useState;
   async function getPagination() {
-    const { search } = useState;
     try {
       const res = await axios(
         `${API}${window.location || search`?_limit=${LIMIT}`}`
@@ -78,9 +90,12 @@ const ProductContextProvider = ({ children }) => {
     addProduct,
     getProducts,
     getOneProduct,
+    deleteProduct,
+    saveEditProduct,
+    getPagination,
     products: state.products,
     oneProduct: state.oneProduct,
-    getPagination,
+    pageTotalCount: state.pageTotalCount,
   };
 
   return (

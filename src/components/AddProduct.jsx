@@ -1,6 +1,14 @@
 import React, { useContext, useState } from "react";
 import { productContext } from "../context/ProductContextProvider";
-import { Button, Container, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 
 const AddProduct = () => {
   const { addProduct } = useContext(productContext);
@@ -79,14 +87,23 @@ const AddProduct = () => {
           onChange={handleAddProduct}
           placeholder="img"
         />
-        <TextField
-          style={{ margin: "10px 0" }}
-          type="text"
-          name="type"
-          value={product.type}
-          onChange={handleAddProduct}
-          placeholder="type"
-        />
+
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Category"
+            name="category"
+            value={product.category}
+            onChange={(e) => handleAddProduct(e)}
+          >
+            <MenuItem value={"Супы"}>Первое блюдо</MenuItem>
+            <MenuItem value={"Десерты"}>Десерты</MenuItem>
+            <MenuItem value={"Салаты"}>Салаты</MenuItem>
+            <MenuItem value={"Напитки"}>Напитки</MenuItem>
+          </Select>
+        </FormControl>
 
         <Button variant="contained" onClick={saveProduct}>
           Add Product
