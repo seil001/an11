@@ -5,21 +5,24 @@ import ProductPage from "./pages/ProductPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ProductContextProvider from "./context/ProductContextProvider";
 import Navbar from "./components/Navbar";
-import HomePage from "./pages/HomePage";
+
+import EditProductPage from "./pages/EditProductPage";
+
+import CartContextProvider from "./context/CartContextProvider";
+
+import CartPage from "./pages/CartPage";
 
 const MyRoutes = () => {
   return (
     <div>
-      <ProductContextProvider>
-        <Navbar />
-
-        <Routes>
-          <Route path="/" element={<ProductPage />} />
-          <Route path="/add" element={<AddProductPage />} />
-          <Route path="/detail/:id" element={<ProductDetailsPage />} />
-          <Route path="/home" element={<HomePage />} />
-        </Routes>
-      </ProductContextProvider>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<ProductPage />} />
+        <Route path="/add" element={<AddProductPage />} />
+        <Route path="/detail/:id" element={<ProductDetailsPage />} />
+        <Route path="/edit/:id" element={<EditProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
     </div>
   );
 };

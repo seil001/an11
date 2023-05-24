@@ -12,6 +12,12 @@ import AdbIcon from "@mui/icons-material/Adb";
 
 import Search from "./Search";
 
+import { Badge } from "@mui/material";
+
+import { useCart } from "../context/CartContextProvider";
+import { Link } from "react-router-dom";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -30,6 +36,13 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const { cartLength, getCart } = useCart();
+  console.log(cartLength, "cart");
+
+  React.useEffect(() => {
+    getCart();
+  }, []);
 
   return (
     <AppBar position="static">
@@ -105,6 +118,17 @@ function Navbar() {
           </Typography>
 
           <Search />
+          <Box sx={{ flexGrow: 0 }}>
+            <IconButton component={Link} to="/cart" sx={{ color: "white" }}>
+              <Badge
+                badgeContent={cartLength}
+                sx={{ color: "white" }}
+                color="error"
+              >
+                <FavoriteBorderRoundedIcon sx={{ width: "20px" }} />
+              </Badge>
+            </IconButton>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

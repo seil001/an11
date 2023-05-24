@@ -1,17 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import { productContext, useProduct } from "../context/ProductContextProvider";
 import {
+  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
+  IconButton,
+  Pagination,
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import { useCart } from "../context/CartContextProvider";
 const ProductCard = () => {
-  const { products, getProducts } = useProduct();
+  const { products, getProducts, deleteProduct } = useContext(productContext);
+  const { addProductToCart, isAlreadyInCart, deleteFromCart } = useCart();
   return (
     <div
       style={{
@@ -49,12 +54,19 @@ const ProductCard = () => {
                 Details
               </Button>
             </Link>
-            <Button size="small" variant="contained">
-              Edit
-            </Button>
-            <Button size="small" variant="contained" color="error">
+            <Link to={`edit/${item.id}`}>
+              <Button size="small">Edit</Button>
+            </Link>
+            <Button size="small" onClick={() => deleteProduct(item.id)}>
               Delete
             </Button>
+
+            <IconButton
+              onClick={() => addProductToCart(item)}
+              color={isAlreadyInCart(item.id) ? "error" : "primary"}
+            >
+              <FavoriteBorderRoundedIcon />
+            </IconButton>
           </CardActions>
         </Card>
       ))}

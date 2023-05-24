@@ -9,8 +9,7 @@
 // } from "../context/ProductContextProvider";
 
 // function ProductList() {
-//   const { products, pageTotalCount } = useProduct();
-//   console.log(products);
+//   const { products, getProducts, pageTotalCount } = productContext();
 //   const [page, setPage] = useState(1);
 
 //   useEffect(() => {
