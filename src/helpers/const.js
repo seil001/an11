@@ -1,4 +1,4 @@
-export const LIMIT = null;
+export const LIMIT = 4;
 
 export const ACTIONS = {
   products: "products",

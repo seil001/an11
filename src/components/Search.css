@@ -1,0 +1,9 @@
+.search {
+  display: flex;
+}
+
+@media all and (max-width: 750px) {
+  .search {
+    display: block;
+  }
+}
