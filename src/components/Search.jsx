@@ -4,7 +4,9 @@ import {
   Grid,
   InputLabel,
   MenuItem,
+  Pagination,
   Select,
+  Stack,
   TextField,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
@@ -12,6 +14,8 @@ import { useSearchParams } from "react-router-dom";
 import { productContext, useProduct } from "../context/ProductContextProvider";
 import { LIMIT } from "../helpers/const";
 import ProductCard from "./ProductCard";
+import "../components/Search.css";
+
 const Search = () => {
   const { products, getProducts, pageTotalCount } = useProduct();
 
@@ -75,12 +79,7 @@ const Search = () => {
   //   }
   // }, [pageTotalCount]);
   return (
-    <div
-      style={{
-        display: "flex",
-        alignContent: "space-around",
-      }}
-    >
+    <div className="search">
       <Box>
         <TextField
           sx={{
@@ -89,6 +88,7 @@ const Search = () => {
             width: "200px",
             height: "60px",
             border: "inherit",
+            // display: { xs: "block" },
           }}
           variant="outlined"
           type="text"
@@ -97,15 +97,7 @@ const Search = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </Box>
-      <Box
-      // sx={{
-      //   marginLeft: "5px",
-      //   maxWidth: 300,
-      //   margin: "20px  auto",
-      //   display: "flex",
-      //   gap: "30px",
-      // }}
-      >
+      <Box>
         <FormControl
           sx={{
             marginTop: "5px",
@@ -129,13 +121,6 @@ const Search = () => {
           </Select>
         </FormControl>
       </Box>
-      {/* <Grid container spacing={2}>
-        {products.map((item) => (
-          <Grid key={item.id} item md={4} sm={6} sx={12}>
-            <ProductCard item={item} key={item.id} />
-          </Grid>
-        ))}
-      </Grid> */}
     </div>
   );
 };
